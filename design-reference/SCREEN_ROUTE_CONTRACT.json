@@ -1,0 +1,231 @@
+{
+  "schema_version": "traveler-screen-route-v1",
+  "framework": "nextjs-app-router",
+  "source_documents": [
+    "docs/03_UI_COVERAGE_ANALYSIS.md",
+    "docs/04_UIUX_PLAN.md",
+    "docs/STITCH_VALIDATION_REPORT.md",
+    "design-reference/D-001/DESIGN.md",
+    "design-reference/UI_CONTRACT.md"
+  ],
+  "screen_count": 5,
+  "tiers": {
+    "core": ["SCR-001", "SCR-003", "SCR-004", "SCR-005"],
+    "auxiliary": ["SCR-002"]
+  },
+  "screens": [
+    {
+      "screen_id": "SCR-001",
+      "name": "메인",
+      "tier": "core",
+      "route": "/",
+      "page_entry": "src/app/page.tsx",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": true,
+      "current_state": "create-next-app 스타터 템플릿이 남아 있음 — 교체 필요",
+      "approved_stitch_screen_id": {
+        "desktop": "ed83825ceb03488688eb9d1cf596299f",
+        "mobile": "122747d136d240d48060a11b52a1dd1b"
+      },
+      "mobile_variant_required": true,
+      "sections": [
+        "hero-search",
+        "domestic-destinations",
+        "overseas-destinations",
+        "travel-theme-chips",
+        "country-safety",
+        "recent-mates",
+        "about-summary"
+      ],
+      "navigates_to": ["SCR-002", "SCR-003", "SCR-004", "SCR-005"]
+    },
+    {
+      "screen_id": "SCR-002",
+      "name": "대표 소개",
+      "tier": "auxiliary",
+      "route": "/about",
+      "page_entry": "src/app/about/page.tsx",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "current_state": "라우트 미생성",
+      "approved_stitch_screen_id": {
+        "desktop": "f20a34e02a2a4faeb323494b49025e9a",
+        "mobile": null
+      },
+      "mobile_variant_required": false,
+      "sections": [
+        "hero-profile",
+        "travel-stats",
+        "story-intro",
+        "travel-timeline",
+        "visited-countries",
+        "photo-gallery",
+        "favorite-destinations-cta"
+      ],
+      "navigates_to": ["SCR-001", "SCR-003", "SCR-004"]
+    },
+    {
+      "screen_id": "SCR-003",
+      "name": "통합 여행 준비",
+      "tier": "core",
+      "route": "/travel-tools",
+      "page_entry": "src/app/travel-tools/page.tsx",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "current_state": "라우트 미생성",
+      "approved_stitch_screen_id": {
+        "desktop": "0c6bcab6b5854b52b95669d47cb23a26",
+        "mobile": "5f146bb3c9684b6297c5a4e890d51272"
+      },
+      "mobile_variant_required": true,
+      "sections": [
+        "intro-3step",
+        "tabs-flight-hotel-mate",
+        "condition-form",
+        "summary-outbound-action",
+        "tips-notice",
+        "mate-post-form-or-unauthorized"
+      ],
+      "navigates_to": ["SCR-004", "SCR-005"]
+    },
+    {
+      "screen_id": "SCR-004",
+      "name": "동행 조회",
+      "tier": "core",
+      "route": "/mates",
+      "page_entry": "src/app/mates/page.tsx",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "current_state": "라우트 미생성",
+      "approved_stitch_screen_id": {
+        "desktop": "3c58152c8f314872acb81ef4f37bd328",
+        "mobile": null
+      },
+      "mobile_variant_required": false,
+      "sections": [
+        "intro-cta-banner",
+        "search-filter",
+        "mate-list",
+        "mate-detail-panel",
+        "how-to-apply-3step",
+        "safety-notice-cta"
+      ],
+      "navigates_to": ["SCR-003", "SCR-005"]
+    },
+    {
+      "screen_id": "SCR-005",
+      "name": "계정·관리",
+      "tier": "core",
+      "route": "/account",
+      "page_entry": "src/app/account/page.tsx",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "current_state": "라우트 미생성",
+      "approved_stitch_screen_id": {
+        "desktop": "88c265bbe49740e3a2f1e03eccf8e750",
+        "mobile": null
+      },
+      "mobile_variant_required": false,
+      "sections": {
+        "guest": ["account-intro", "auth-card", "member-benefits", "security-notice"],
+        "member": ["profile-summary", "my-mate-posts", "sent-requests", "blocked-users", "new-post-cta"],
+        "admin": ["admin-intro", "kpi-summary-cards", "report-response-queue", "identity-verification-queue", "post-moderation-queue", "external-url-safety-sync"]
+      },
+      "navigates_to": ["SCR-001", "SCR-003", "SCR-004"]
+    }
+  ],
+  "technical_routes": [
+    {
+      "type": "auth_callback",
+      "route": "/auth/callback",
+      "file": "src/app/auth/callback/route.ts",
+      "counted_as_screen": false,
+      "note": "이메일 인증/매직링크 콜백 처리(REQ-FUNC-066), 화면 요소 없음"
+    },
+    {
+      "type": "api_route",
+      "route": "/api/mates",
+      "file": "src/app/api/mates/route.ts",
+      "counted_as_screen": false,
+      "note": "동행 모집글 생성(REQ-FUNC-031,032)"
+    },
+    {
+      "type": "api_route",
+      "route": "/api/mates/[id]/requests",
+      "file": "src/app/api/mates/[id]/requests/route.ts",
+      "counted_as_screen": false,
+      "note": "참가 요청 생성/중복 차단(REQ-FUNC-034,035)"
+    },
+    {
+      "type": "api_route",
+      "route": "/api/reports",
+      "file": "src/app/api/reports/route.ts",
+      "counted_as_screen": false,
+      "note": "신고 접수(REQ-FUNC-039)"
+    },
+    {
+      "type": "api_route",
+      "route": "/api/admin/settings",
+      "file": "src/app/api/admin/settings/route.ts",
+      "counted_as_screen": false,
+      "note": "외부 URL HTTPS 허용목록 설정(REQ-FUNC-077)"
+    },
+    {
+      "type": "not_found",
+      "route": null,
+      "file": "src/app/not-found.tsx",
+      "counted_as_screen": false,
+      "note": "미매칭 전체 경로 404 처리(REQ-FUNC-078), 별도 디자인 Screen으로 세지 않음"
+    },
+    {
+      "type": "error_boundary",
+      "route": null,
+      "file": "src/app/error.tsx",
+      "counted_as_screen": false,
+      "note": "렌더링 오류(500) 처리(REQ-FUNC-078)"
+    },
+    {
+      "type": "unauthorized_boundary",
+      "route": null,
+      "file": "src/app/unauthorized.tsx",
+      "counted_as_screen": false,
+      "note": "권한 없음 처리(REQ-FUNC-078)"
+    }
+  ],
+  "required_navigation": [
+    { "from": "SCR-001", "to": "SCR-003", "trigger": "Hero 보조 CTA \"항공·숙소 준비하기\"" },
+    { "from": "SCR-001", "to": "SCR-004", "trigger": "\"전체 동행 보기\"" },
+    { "from": "SCR-001", "to": "SCR-002", "trigger": "\"대표 소개 더 보기\"" },
+    { "from": "SCR-001", "to": "SCR-005", "trigger": "헤더 로그인/계정 아이콘" },
+    { "from": "SCR-002", "to": "SCR-001", "trigger": "추천 여행지 카드 → 상세 Drawer 딥링크" },
+    { "from": "SCR-002", "to": "SCR-003", "trigger": "CTA Banner \"항공·숙소 준비하기\"" },
+    { "from": "SCR-002", "to": "SCR-004", "trigger": "CTA Banner \"동행과 함께 떠나기\"" },
+    { "from": "SCR-003", "to": "SCR-004", "trigger": "동행 모집글 제출 완료 → 작성한 글 상세" },
+    { "from": "SCR-003", "to": "SCR-005", "trigger": "동행 탭 미인증 시 \"로그인/가입하기\"" },
+    { "from": "SCR-004", "to": "SCR-003", "trigger": "\"새 동행 글 작성하기\" / \"항공·숙소도 함께 준비하기\"" },
+    { "from": "SCR-004", "to": "SCR-005", "trigger": "참가 신청 시 미로그인 안내 / \"내 신청 확인\"" },
+    { "from": "SCR-005", "to": "SCR-004", "trigger": "\"내가 쓴 동행 글\" 항목 클릭 → 내 글 상세" },
+    { "from": "SCR-005", "to": "SCR-003", "trigger": "내 글 \"수정\" → 동행 탭 수정 모드" },
+    { "from": "SCR-005", "to": "SCR-001", "trigger": "로그아웃" }
+  ],
+  "prohibited_globally": [
+    "airbnb_trademark_elements",
+    "booking_or_payment_ui",
+    "ads_or_star_ratings",
+    "real_time_flight_or_hotel_pricing",
+    "proprietary_font_files",
+    "undocumented_design_tokens",
+    "placeholder_copy_lorem_ipsum_or_coming_soon"
+  ],
+  "completion_checks": {
+    "route_duplicates": "none",
+    "page_entry_duplicates": "none",
+    "screen_count": 5,
+    "tier_distinction_present": true
+  }
+}

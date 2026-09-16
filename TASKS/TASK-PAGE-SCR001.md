@@ -1,0 +1,23 @@
+# TASK-PAGE-SCR001 — 메인 화면 조립 (`/`)
+
+- **Category:** Page Owner
+- **Implementation Status:** IMPLEMENT
+- **Requirement Ref:** REQ-FUNC-001~010, 047~054, 057, 064, 065, 067~070(조립 수준)
+- **Screen:** SCR-001
+- **Route:** `/`
+- **Page Entry:** `src/app/page.tsx`
+- **Depends On:** CMP-SCR001-HERO-SEARCH, CMP-SCR001-DESTINATION-GRID, CMP-SCR001-DESTINATION-DETAIL-DRAWER, CMP-SCR001-SAFETY-SECTION, CMP-SCR001-RECENT-MATES, CMP-SCR001-ABOUT-SUMMARY, CMP-COMMON-HEADER-FOOTER, CMP-COMMON-EMPTY-STATE, DATA-DESTINATIONS, DATA-SAFETY, DATA-REPRESENTATIVE
+- **Expected Files:** `src/app/page.tsx`(create-next-app 스타터 템플릿 완전 교체 — 현재 `next.svg`, "To get started, edit the page.tsx", Vercel/Next.js 학습 링크가 남아 있음)
+- **Functional AC:**
+  - **Section 순서**(Header 제외 본문): 1) Hero(통합 검색) 2) 국내 여행지 6개 3) 해외 여행지 6개 4) 여행 동기(테마) 6개 5) 국가별 주의사항 6개 6) 최근 동행글 3개 또는 완성형 Empty State 7) free_traveler 소개 — 화면별 콘텐츠 계약과 정확히 일치해야 한다.
+  - **Section별 데이터 출처**: 2·3은 `DATA-DESTINATIONS`(scope=DOMESTIC/OVERSEAS), 5는 `DATA-SAFETY`, 6은 Supabase `mate_posts`(`DB-ACCESS`), 7은 `DATA-REPRESENTATIVE`.
+  - **최소 Card 수**: 국내 6, 해외 6, 테마 Chip 6, 안전정보 6, 최근 동행 최대 3(0건이면 Empty State).
+  - **반응형 콘텐츠 밀도**: Desktop Card Grid 3열 → Tablet 2열 → Mobile 1열. Hero는 Desktop 뷰포트 60-70%로 제한해 로드 즉시 다음 Section 상단이 보이게 한다.
+  - 모든 Component/Data Task를 실제로 연결한다(더미 데이터·하드코딩 텍스트 금지).
+- **Visual AC:**
+  - **Lorem ipsum, "준비 중", "정보 확인 필요", 내용 없는 빈 카드를 절대 두지 않는다.**
+  - 콘텐츠가 없는 Section(최근 동행 0건 등)은 `CMP-COMMON-EMPTY-STATE`(상황 설명+이용 방법+CTA 3요소)로 대체하며, 빈 화면이나 무한 스피너를 남기지 않는다.
+  - D-001 토큰(Color/Typography/Radius/Spacing/Shadow) 외 임의 색상·폰트를 추가하지 않는다.
+- **Security/Privacy AC:** 해당 없음(공개 페이지, 로그인 불필요).
+- **Verify:** E2E-PUBLIC-SMOKE, TEST-A11Y-AXE
+- **Priority:** P1

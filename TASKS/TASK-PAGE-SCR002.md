@@ -1,0 +1,21 @@
+# TASK-PAGE-SCR002 — 대표 소개 화면 조립 (`/about`)
+
+- **Category:** Page Owner
+- **Implementation Status:** IMPLEMENT
+- **Requirement Ref:** REQ-FUNC-057~063, 064, 065
+- **Screen:** SCR-002
+- **Route:** `/about`
+- **Page Entry:** `src/app/about/page.tsx`
+- **Depends On:** CMP-SCR002-HERO-PROFILE, CMP-SCR002-STATS-STORY, CMP-SCR002-TIMELINE, CMP-SCR002-COUNTRIES-GALLERY, CMP-SCR002-FAVORITE-DESTINATIONS-CTA, CMP-COMMON-HEADER-FOOTER, DATA-REPRESENTATIVE, DATA-DESTINATIONS
+- **Expected Files:** `src/app/about/page.tsx`(신규 생성)
+- **Functional AC:**
+  - **Section 순서**: 1) Profile Hero 2) 여행 지표 3) 소개·철학 4) Timeline 6개 5) 방문 국가 30개 6) Gallery 8개 7) 기억에 남는 여행지 4개 + CTA.
+  - **데이터 출처**: 전 Section `DATA-REPRESENTATIVE`, 7번만 `DATA-DESTINATIONS` 딥링크.
+  - **최소 수**: Timeline 6, 방문 국가 30, Gallery 8, 추천 여행지 4.
+  - **반응형 밀도**: Hero 좌우 분할→Mobile 세로 스택, Gallery Desktop Grid→Mobile 1~2열.
+- **Visual AC:**
+  - Lorem ipsum·"준비 중"·"정보 확인 필요"·빈 카드 금지. 정적 콘텐츠 화면이라 Empty State가 발생하지 않지만, 이미지 로드 실패 시 대체 배경+alt 텍스트를 노출한다.
+  - D-001 토큰만 사용한다.
+- **Security/Privacy AC:** 해당 없음.
+- **Verify:** E2E-PUBLIC-SMOKE
+- **Priority:** P1

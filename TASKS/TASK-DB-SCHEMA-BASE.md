@@ -1,0 +1,23 @@
+# TASK-DB-SCHEMA-BASE — Supabase 테이블 스키마(6종)
+
+- **Category:** DB
+- **Implementation Status:** IMPLEMENT
+- **Requirement Ref:** (기반 인프라, REQ-FUNC-029, 031, 034, 040, 039, 077의 저장소 전제)
+- **Screen:** —
+- **Route:** —
+- **Page Entry:** —
+- **Depends On:** —
+- **Expected Files:** `supabase/migrations/0001_schema.sql`
+- **Functional AC:**
+  - `docs/PROJECT_SCOPE.md` §5에 정의된 **6개 테이블만** 생성한다: `profiles`, `mate_posts`, `mate_applications`, `blocks`, `reports`, `app_settings`. `AUDIT_LOG` 등 7번째 테이블은 만들지 않는다.
+  - `profiles`: `user_id`(PK/FK auth.users), `nickname`(UNIQUE), `is_adult`, `adult_verified_at`, `age_band`, `gender`(optional), `travel_styles`, `bio`, `status`.
+  - `mate_posts`: `post_id`, `owner_id`, `country_id/region_id`(정적 데이터의 코드 참조), `start_date`, `end_date`, `capacity`, `preferences`, `travel_styles`, `title`, `description`, `status`(OPEN/CLOSED/HIDDEN/DELETED), `created_at`.
+  - `mate_applications`: `application_id`, `post_id`, `applicant_id`, `message`(500자 제한), `status`(PENDING/ACCEPTED/REJECTED/WITHDRAWN), `created_at`.
+  - `blocks`: `blocker_id`, `blocked_id`, `created_at`(쌍 UNIQUE).
+  - `reports`: `report_id`, `reporter_id`, `target_type`, `target_id`, `reason_code`, `description`, `status`(OPEN/RESOLVED/DISMISSED), `created_at`, `resolved_at`.
+  - `app_settings`: `key`(PK, 예: `FLIGHT_OUTBOUND_URL`/`HOTEL_OUTBOUND_URL`), `value`, `updated_at`, `updated_by`(FK `profiles.user_id`). Admin이 API-ADMIN-SETTINGS를 통해 관리하는 외부 URL 허용목록 값을 저장한다(REQ-FUNC-077). 콘텐츠 CRUD용 테이블이 아니다.
+  - `profiles.age_band`가 아닌 정확한 생년월일 컬럼은 만들지 않는다(REQ-FUNC-028 전제).
+- **Visual AC:** 해당 없음.
+- **Security/Privacy AC:** 생년월일 원본을 저장하는 컬럼을 두지 않는다. 이메일 등 인증 정보는 Supabase `auth.users`에만 두고 커스텀 테이블에 중복 저장하지 않는다.
+- **Verify:** 코드 리뷰(스키마), TEST-RLS-BASIC
+- **Priority:** P0

@@ -1,0 +1,21 @@
+# TASK-PAGE-SCR003 — 통합 여행 준비 화면 조립 (`/travel-tools`)
+
+- **Category:** Page Owner
+- **Implementation Status:** IMPLEMENT
+- **Requirement Ref:** REQ-FUNC-011~032, 054, 064, 065, 080
+- **Screen:** SCR-003
+- **Route:** `/travel-tools`
+- **Page Entry:** `src/app/travel-tools/page.tsx`
+- **Depends On:** CMP-SCR003-INTRO-TABS, CMP-SCR003-FLIGHT-FORM, CMP-SCR003-HOTEL-FORM, CMP-SCR003-MATE-WRITE-FORM, CMP-COMMON-HEADER-FOOTER, CMP-COMMON-TOAST, API-MATE-POSTS, INFRA-AUTH-SESSION, INFRA-ADULT-VERIFICATION
+- **Expected Files:** `src/app/travel-tools/page.tsx`(신규 생성)
+- **Functional AC:**
+  - **Section 순서**: 1) Intro(3단계 안내) 2) 탭(항공편/숙소/동행 구하기) 3) 여행정보 Form(선택 탭에 따라 항공 또는 숙소) 4) 입력 요약·외부 이동 5) 찾기 Tip 3개 6) 동행 작성 또는 로그인 안내·안전 안내.
+  - **항공·숙소·동행 작성 영역은 각각 별도 Component(`CMP-SCR003-FLIGHT-FORM`/`HOTEL-FORM`/`MATE-WRITE-FORM`)로 분리해 조립한다(규칙 9).** 탭 전환은 실제로 3개 탭 모두 완전히 동작해야 한다(스텁 금지).
+  - **데이터 출처**: 항공/숙소 입력은 브라우저 세션 상태(서버 없음), 동행 작성은 `API-MATE-POSTS`.
+  - Tip 최소 3개.
+- **Visual AC:**
+  - Lorem ipsum·"준비 중"·빈 카드 금지. 완성형 Empty State가 필요한 목록형 Section은 없음(폼 화면).
+  - Desktop Form+Tip 좌우 분할, Mobile 세로 스택.
+- **Security/Privacy AC:** 항공·숙소 폼의 국가·지역·날짜 입력값은 서버·DB·URL query·분석 이벤트 어디에도 전달하지 않는다(REQ-FUNC-017, 025, CON-01, CON-02 — `CMP-SCR003-FLIGHT-FORM`/`HOTEL-FORM`의 Security/Privacy AC 상속).
+- **Verify:** E2E-TRAVEL-TOOLS, UNIT-TRAVEL-DATES
+- **Priority:** P1

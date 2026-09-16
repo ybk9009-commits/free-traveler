@@ -1,0 +1,23 @@
+# TASK-CMP-SCR003-FLIGHT-FORM — 항공 조건 입력·요약·외부 이동
+
+- **Category:** Component
+- **Implementation Status:** IMPLEMENT / IMPLEMENT(축소, 오류처리)
+- **Requirement Ref:** REQ-FUNC-011, REQ-FUNC-012, REQ-FUNC-013, REQ-FUNC-014, REQ-FUNC-015, REQ-FUNC-016, REQ-FUNC-017, REQ-FUNC-018, REQ-FUNC-054, REQ-NF-017
+- **Screen:** SCR-003
+- **Route:** `/travel-tools`
+- **Page Entry:** `src/app/travel-tools/page.tsx`(PAGE-SCR003이 조립)
+- **Depends On:** CMP-SCR003-INTRO-TABS, INFRA-EXTERNAL-LINK-SAFETY, CMP-COMMON-TOAST
+- **Expected Files:** `src/components/screens/scr003/FlightForm.tsx`
+- **Functional AC:**
+  - 국가/지역(국가 종속 Select, 국가 변경 시 지역 초기화)/출발일/귀국일을 필수 입력으로 제공한다(REQ-FUNC-011, 012).
+  - 출발일이 오늘 이전이거나 귀국일이 출발일보다 빠르면 제출을 차단한다(REQ-FUNC-013, `UNIT-TRAVEL-DATES`로 검증).
+  - 유효 입력 후 요약 단계(수정 버튼 포함, 값은 브라우저 세션 동안 유지)를 표시한다(REQ-FUNC-014).
+  - "입력값은 외부 사이트로 전달되지 않습니다" 고지를 폼과 요약 모두에 고정 표시한다(REQ-FUNC-015).
+  - "항공편 보러 가기" 클릭 시 `INFRA-EXTERNAL-LINK-SAFETY`로 `FLIGHT_OUTBOUND_URL`을 새 탭 이동한다. 목적지·날짜 쿼리는 절대 붙이지 않는다(REQ-FUNC-016).
+  - 검색 Tip 3개 이상을 표시한다(콘텐츠 계약).
+  - "안전정보는 공식 판단을 대체하지 않습니다" 고지를 공유한다(REQ-FUNC-054).
+  - URL 오류(허용목록 밖/네트워크 실패) 시 이동을 차단하고 인라인 오류 + 재시도 버튼을 제공한다(REQ-FUNC-018 축소, 운영 오류 로그 저장 화면은 만들지 않음).
+- **Visual AC:** Form+Tip 좌우 분할(Desktop) / 세로 스택(Mobile). 입력창 52px 높이, 포커스 시 2px `{colors.focus-ring}`.
+- **Security/Privacy AC:** **국가·지역·날짜 입력값은 브라우저 메모리 상태로만 처리하고 서버 API·DB·서버 로그·분석 이벤트에 저장하지 않는다(REQ-FUNC-017, REQ-NF-017, CON-01). 이 Task를 위한 서버 API Route를 만들지 않는다.**
+- **Verify:** UNIT-TRAVEL-DATES, E2E-TRAVEL-TOOLS(쿼리 미포함·noopener 속성 확인)
+- **Priority:** P1

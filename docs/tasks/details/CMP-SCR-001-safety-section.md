@@ -1,0 +1,84 @@
+# CMP-SCR-001-safety-section — 국가별 안전정보 Card + 상세 Drawer
+
+```task-meta
+{
+  "task_id": "CMP-SCR-001-safety-section",
+  "type": "component",
+  "depends_on": [
+    "DATA-SAFETY",
+    "INFRA-EXTERNAL-LINK-SAFETY"
+  ],
+  "requirements": [
+    "REQ-FUNC-047",
+    "REQ-FUNC-048",
+    "REQ-FUNC-049",
+    "REQ-FUNC-050",
+    "REQ-FUNC-051",
+    "REQ-FUNC-052",
+    "REQ-FUNC-053",
+    "REQ-FUNC-054",
+    "REQ-NF-028"
+  ]
+}
+```
+
+## Context
+이 Task는 SCR-001 화면이 필요로 하는 '국가별 안전정보 Card + 상세 Drawer' 기능을 제공한다. `TASKS/00_TASK_LIST.md`의 기존 Task 정의를 그대로 계승하며 신규 구현 범위를 추가하지 않는다.
+
+## Project Scope
+`docs/PROJECT_SCOPE.md` §2 화면 범위, §3 REQ-FUNC 요구사항 처리
+
+## Requirement Ref
+- 원본 참조(TASKS/00_TASK_LIST.md): REQ-FUNC-047, REQ-FUNC-048, REQ-FUNC-049, REQ-FUNC-050(축소), REQ-FUNC-051, REQ-FUNC-052, REQ-FUNC-053, REQ-FUNC-054, REQ-NF-028(축소)
+- 정규화된 Requirement ID: REQ-FUNC-047, REQ-FUNC-048, REQ-FUNC-049, REQ-FUNC-050, REQ-FUNC-051, REQ-FUNC-052, REQ-FUNC-053, REQ-FUNC-054, REQ-NF-028
+
+## Screen / Route / Page Entry
+- Screen: SCR-001
+- Route: `/`
+- Page Entry: `src/app/page.tsx`(PO-SCR-001이 조립)
+
+## Design Ref
+- `design-reference/D-001/DESIGN.md` § Drawer·Modal
+- `design-reference/D-001/DESIGN.md` § Alert·Toast(경보 배지) + Drawer·Modal
+- `design-reference/D-001/DESIGN.md` § Destination Card
+- `design-reference/UI_CONTRACT.md` SCR-001 영역 순서·주요 Component·금지 기능 표
+
+## Depends On
+- DATA-SAFETY
+- INFRA-EXTERNAL-LINK-SAFETY
+
+## Expected Files
+`src/components/screens/scr001/SafetySection.tsx`, `src/components/screens/scr001/SafetyDetailDrawer.tsx`
+
+## Functional AC
+- 국가별 안전정보 `card.safety` 6개(경보단계 배지 + 최종확인일 + stale 배지)를 표시한다(콘텐츠 계약).
+  - 상세 Drawer에 8개 필수 카테고리, 출처명·URL·최종확인일·편집자, 긴급연락처·영사콜센터를 표시한다(REQ-FUNC-047, 048, 053).
+  - 외교부 원문 링크는 `INFRA-EXTERNAL-LINK-SAFETY`로 새 탭 오픈한다(REQ-FUNC-049).
+  - `verifiedAt` 기준 7일 초과 시 렌더링 시점에 stale 배지를 계산해 표시한다(REQ-FUNC-050, REQ-NF-028 — 배치 없이 렌더링 시 계산).
+  - 중대 경보(출국권고·여행금지·특별여행주의보)는 상단에 **텍스트로** 표시하며 색상만으로 의미를 전달하지 않는다(REQ-FUNC-051). 국가 전체/지역 경보 범위를 `scopeType`/`scopeText`로 구분 표시한다(REQ-FUNC-052).
+  - "이 정보는 공식 판단을 대체하지 않습니다. 출국 전 공식 출처 재확인이 필요합니다" 고지를 고정 표시한다(REQ-FUNC-054).
+
+## Visual AC
+경보 1~4단계 배지는 `{colors.safety-caution/warning/alert/ban}` + 텍스트 라벨("여행유의"/"여행자제"/"철수권고"/"여행금지") 병기.
+
+## Security/Privacy AC
+해당 없음.
+
+## Test Cases
+- [Functional AC] 국가별 안전정보 `card.safety` 6개(경보단계 배지 + 최종확인일 + stale 배지)를 표시한다(콘텐츠 계약). — Verify: TEST-E2E-PUBLIC-SMOKE, TEST-DATA-VALIDATION
+- [Functional AC] 상세 Drawer에 8개 필수 카테고리, 출처명·URL·최종확인일·편집자, 긴급연락처·영사콜센터를 표시한다(REQ-FUNC-047, 048, 053). — Verify: TEST-E2E-PUBLIC-SMOKE, TEST-DATA-VALIDATION
+- [Functional AC] 외교부 원문 링크는 `INFRA-EXTERNAL-LINK-SAFETY`로 새 탭 오픈한다(REQ-FUNC-049). — Verify: TEST-E2E-PUBLIC-SMOKE, TEST-DATA-VALIDATION
+- [Functional AC] `verifiedAt` 기준 7일 초과 시 렌더링 시점에 stale 배지를 계산해 표시한다(REQ-FUNC-050, REQ-NF-028 — 배치 없이 렌더링 시 계산). — Verify: TEST-E2E-PUBLIC-SMOKE, TEST-DATA-VALIDATION
+- [Visual AC] 경보 1~4단계 배지는 `{colors.safety-caution/warning/alert/ban}` + 텍스트 라벨("여행유의"/"여행자제"/"철수권고"/"여행금지") 병기. — Verify: TEST-E2E-PUBLIC-SMOKE, TEST-DATA-VALIDATION
+
+## Verify
+TEST-E2E-PUBLIC-SMOKE, TEST-DATA-VALIDATION
+
+## Definition of Done
+- Functional AC 전 항목을 충족한다.
+- Visual AC 전 항목을 충족한다.
+- Verify에 명시된 검증(`TEST-E2E-PUBLIC-SMOKE, TEST-DATA-VALIDATION`)을 통과한다.
+- Expected Files 목록 밖의 파일을 만들거나 수정하지 않는다.
+
+## Forbidden
+- Expected Files 목록 밖의 파일을 만들거나 수정하지 않는다.

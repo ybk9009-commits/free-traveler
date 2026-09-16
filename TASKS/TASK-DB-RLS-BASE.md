@@ -1,0 +1,22 @@
+# TASK-DB-RLS-BASE — Supabase RLS 정책
+
+- **Category:** DB
+- **Implementation Status:** IMPLEMENT
+- **Requirement Ref:** REQ-FUNC-044, REQ-FUNC-077, REQ-NF-013
+- **Screen:** —
+- **Route:** —
+- **Page Entry:** —
+- **Depends On:** DB-SCHEMA-BASE
+- **Expected Files:** `supabase/migrations/0002_rls.sql`
+- **Functional AC:**
+  - `profiles`: 본인만 자신의 행 UPDATE 가능, 공개 필드(닉네임/스타일 등)는 SELECT 공개.
+  - `mate_posts`: 누구나 `status != DELETED` 목록 SELECT 가능(차단 필터는 애플리케이션 레벨), 작성자만 UPDATE/DELETE.
+  - `mate_applications`: 신청자 본인과 대상 글 작성자만 SELECT, 신청자만 INSERT, 글 작성자만 상태 UPDATE.
+  - `blocks`: 본인(`blocker_id`)만 SELECT/INSERT/DELETE.
+  - `reports`: 신고자 본인과 Moderator/Admin 역할만 SELECT, 신고자만 INSERT, Moderator/Admin만 상태 UPDATE.
+  - `app_settings`: 클라이언트에서는 SELECT/INSERT/UPDATE/DELETE를 모두 차단한다(RLS 전면 거부) — 값은 서버 전용 Route Handler(`API-ADMIN-SETTINGS`)가 Service Role로만 읽고 쓴다. Admin 역할만 그 Route Handler를 호출할 수 있다(애플리케이션 레벨 검사).
+  - 최소 RLS 원칙(`docs/PROJECT_SCOPE.md` §1)을 따르며 "회원 전용 쓰기 경로 보호"를 최우선 목표로 한다.
+- **Visual AC:** 해당 없음.
+- **Security/Privacy AC:** 모든 쓰기 정책은 `auth.uid()` 기반으로 검증한다. Moderator/Admin 역할 판별은 `profiles`가 아닌 별도 role 클레임(Supabase custom claims)을 사용한다.
+- **Verify:** TEST-RLS-BASIC(권한별 부정 접근 테스트)
+- **Priority:** P0

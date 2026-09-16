@@ -1,0 +1,21 @@
+# TASK-CMP-SCR003-HOTEL-FORM — 숙소 조건 입력·요약·외부 이동
+
+- **Category:** Component
+- **Implementation Status:** IMPLEMENT / IMPLEMENT(축소, 오류처리)
+- **Requirement Ref:** REQ-FUNC-019, REQ-FUNC-020, REQ-FUNC-021, REQ-FUNC-022, REQ-FUNC-023, REQ-FUNC-024, REQ-FUNC-025, REQ-FUNC-026, REQ-NF-017
+- **Screen:** SCR-003
+- **Route:** `/travel-tools`
+- **Page Entry:** `src/app/travel-tools/page.tsx`(PAGE-SCR003이 조립)
+- **Depends On:** CMP-SCR003-INTRO-TABS, INFRA-EXTERNAL-LINK-SAFETY, CMP-COMMON-TOAST
+- **Expected Files:** `src/components/screens/scr003/HotelForm.tsx`
+- **Functional AC:**
+  - 국가/지역(종속)/체크인/체크아웃을 필수 입력으로 제공한다(REQ-FUNC-019, 020).
+  - 체크인이 오늘 이전이거나 체크아웃이 체크인과 같거나 빠르면 제출을 차단한다(REQ-FUNC-021, `UNIT-TRAVEL-DATES`).
+  - 유효 입력 후 요약을 표시하며 폼 값과 정확히 일치해야 한다(REQ-FUNC-022).
+  - 비전달 고지를 폼과 요약에 고정 표시한다(REQ-FUNC-023).
+  - `HOTEL_OUTBOUND_URL`을 `INFRA-EXTERNAL-LINK-SAFETY`로 새 탭 이동한다(REQ-FUNC-024).
+  - URL 오류 시 이동을 차단하고 입력값을 유지한 채 오류를 표시한다(REQ-FUNC-026 축소).
+- **Visual AC:** `CMP-SCR003-FLIGHT-FORM`과 동일한 좌우 분할/입력 패턴을 재사용한다.
+- **Security/Privacy AC:** **국가·지역·날짜 입력값은 브라우저 메모리 상태로만 처리하고 서버 API·DB·서버 로그·분석 이벤트에 저장하지 않는다(REQ-FUNC-025, REQ-NF-017, CON-01). 이 Task를 위한 서버 API Route를 만들지 않는다.**
+- **Verify:** UNIT-TRAVEL-DATES, E2E-TRAVEL-TOOLS
+- **Priority:** P1

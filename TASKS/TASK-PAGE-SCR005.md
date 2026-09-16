@@ -1,0 +1,24 @@
+# TASK-PAGE-SCR005 — 계정·관리 화면 조립 (`/account`)
+
+- **Category:** Page Owner
+- **Implementation Status:** IMPLEMENT
+- **Requirement Ref:** REQ-FUNC-027~029, 036~038, 040~042, 045, 064, 065, 066, 068, 077
+- **Screen:** SCR-005
+- **Route:** `/account`
+- **Page Entry:** `src/app/account/page.tsx`
+- **Depends On:** CMP-SCR005-AUTH, CMP-SCR005-PROFILE, CMP-SCR005-MY-ACTIVITY, CMP-SCR005-ADMIN, CMP-COMMON-HEADER-FOOTER, CMP-COMMON-EMPTY-STATE, INFRA-AUTH-SESSION, INFRA-USER-DELETE, API-ADMIN-SETTINGS
+- **Expected Files:** `src/app/account/page.tsx`(신규 생성)
+- **Functional AC:**
+  - **역할별 조립(규칙 11)**: Auth(Guest), Profile(Member), My Activity(Member), Admin(Moderator/Admin)을 각각 독립 Component로 분리하고, **현재 세션 역할에 해당하지 않는 영역은 렌더링 자체를 하지 않는다**(props로 숨기는 CSS 방식 금지 — 서버에서 역할을 판정해 컴포넌트 트리에서 제외).
+  - Guest·Member·Admin 중 현재 역할의 **Intro → 핵심 작업 → 도움말 또는 다음 행동** 순서를 지킨다(콘텐츠 계약).
+    - Guest: 계정 Intro → 인증 Form(핵심 작업) → 회원 혜택 안내/보안 안내(도움말).
+    - Member: 프로필/내 활동 탭 Intro → 프로필 편집·글 관리·신청 관리(핵심 작업) → 새 글 작성 CTA(다음 행동).
+    - Admin: 관리 Intro → 신고 처리·외부 URL 설정(핵심 작업) → 처리 결과 상태(도움말).
+  - Admin 관리 탭은 신고 상태 변경 + 외부 URL 설정 2개만 제공한다(콘텐츠 CRUD 탭 없음, `docs/PROJECT_SCOPE.md` §2).
+- **Visual AC:**
+  - Lorem ipsum·"준비 중"·빈 카드 금지.
+  - 내 글/신청/차단 목록 0건은 `CMP-COMMON-EMPTY-STATE`로 대체한다.
+  - 관리 영역은 통계 차트 없이 목록+상태 변경 액션으로만 구성한다.
+- **Security/Privacy AC:** 관리 탭은 클라이언트 role 값을 신뢰하지 않고, 서버(API-ADMIN-SETTINGS, 미들웨어)에서 role을 재검증한 뒤에만 렌더링 데이터를 채운다.
+- **Verify:** E2E-MATE-AUTH, TEST-RLS-BASIC
+- **Priority:** P1
