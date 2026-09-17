@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans:
+    "Inter", var(--font-geist-sans), -apple-system, "Apple SD Gothic Neo",
+    "Malgun Gothic", sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/*
+ * design-reference/D-001/DESIGN.md 정본 토큰을 Tailwind 테마로 등록한다.
+ * 이 표에 없는 값(임의 색상 등)은 추가하지 않는다(D-001 § Do / Do Not).
+ */
+@theme {
+  /* Color Token */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f7f6f4;
+  --color-surface-strong: #efede9;
+  --color-ink: #2a2a2e;
+  --color-body: #54545a;
+  --color-muted: #83838a;
+  --color-hairline: #e3e2de;
+  --color-border-strong: #c7c6c1;
+  --color-primary: #f4623a;
+  --color-primary-hover: #d94f2b;
+  --color-primary-disabled: #fbcfc0;
+  --color-primary-soft: #feebe3;
+  --color-focus-ring: #1d4ed8;
+  --color-danger: #c1392b;
+  --color-danger-soft: #fbe4e1;
+  --color-warning: #b4700a;
+  --color-warning-soft: #fbeeda;
+  --color-success: #1f7a52;
+  --color-info: #2b5fae;
+  --color-safety-caution: #2c5fa8;
+  --color-safety-warning: #c77700;
+  --color-safety-alert: #c1352b;
+  --color-safety-ban: #1f1f1f;
+  --color-scrim: rgba(20, 20, 20, 0.5);
+
+  /* Typography (font-size + line-height. 굵기는 font-bold/font-semibold 등 기본 유틸을 함께 쓴다) */
+  --text-display-xl: 34px;
+  --text-display-xl--line-height: 1.3;
+  --text-display-lg: 26px;
+  --text-display-lg--line-height: 1.35;
+  --text-display-md: 20px;
+  --text-display-md--line-height: 1.4;
+  --text-title-md: 18px;
+  --text-title-md--line-height: 1.4;
+  --text-title-sm: 15px;
+  --text-title-sm--line-height: 1.4;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.65;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.6;
+  --text-caption: 13px;
+  --text-caption--line-height: 1.4;
+  --text-button-md: 16px;
+  --text-button-md--line-height: 1.2;
+  --text-button-sm: 14px;
+  --text-button-sm--line-height: 1.2;
+  --text-link: 14px;
+  --text-link--line-height: 1.5;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-base: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section-desktop: clamp(64px, 6vw, 96px);
+  --spacing-section-mobile: clamp(40px, 10vw, 64px);
+
+  /* Desktop 콘텐츠 최대 폭(1200-1280px), .page-container에서 사용 */
+  --container-content: 1280px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  /* rounded-full은 Tailwind 기본값(9999px)이 D-001과 동일해 별도 재정의가 필요 없다 */
+
+  /* Shadow (Elevation) — card-rest는 그림자 없음(테두리만 사용)이라 토큰이 없다 */
+  --shadow-card-hover:
+    0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-drawer-modal: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+  /* Breakpoint — 기본 sm/md/lg/xl/2xl에 D-001 전용 구간을 추가한다 */
+  --breakpoint-tablet: 744px;
+  --breakpoint-desktop: 1280px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/*
+ * Desktop 1440px 기준·콘텐츠 1200-1280px 중앙 정렬, Mobile 390px·좌우 16-20px
+ * 여백 규칙을 전역 유틸로 제공한다(D-001 § Desktop·Mobile 규칙, REQ-FUNC-065).
+ */
+.page-container {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+@media (min-width: 744px) {
+  .page-container {
+    padding-inline: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .page-container {
+    padding-inline: 0;
+  }
+}
+
+.page-section {
+  padding-block: var(--spacing-section-mobile);
+}
+
+@media (min-width: 1280px) {
+  .page-section {
+    padding-block: var(--spacing-section-desktop);
+  }
+}
+
+/*
+ * 키보드 포커스는 항상 2px focus-ring 아웃라인 + 2px 오프셋으로 표시하며
+ * outline: none으로 제거하지 않는다(D-001 § Desktop·Mobile 규칙, REQ-NF-023).
+ * 개별 컴포넌트가 이미 focus-visible 유틸을 지정한 경우 그 규칙이 우선한다.
+ */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
 }
