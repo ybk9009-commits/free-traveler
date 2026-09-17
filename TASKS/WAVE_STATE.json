@@ -53,7 +53,7 @@
         "INFRA-AUTH-SESSION",
         "INFRA-USER-DELETE"
       ],
-      "status": "pending",
+      "status": "blocked",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
