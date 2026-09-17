@@ -40,7 +40,7 @@
         "INFRA-EXTERNAL-LINK-SAFETY",
         "INFRA-INPUT-VALIDATION"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
