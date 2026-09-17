@@ -12,7 +12,7 @@
         "CMP-COMMON-FAVORITES-SHARE",
         "CMP-COMMON-RESPONSIVE-LAYOUT"
       ],
-      "status": "pending",
+      "status": "blocked",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
