@@ -67,7 +67,7 @@
         "CMP-COMMON-HEADER-FOOTER",
         "INFRA-ADULT-VERIFICATION"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
