@@ -1,8 +1,31 @@
 import Image from "next/image";
+import type { Metadata } from "next";
+import {
+  buildPageMetadata,
+  buildWebPageStructuredData,
+} from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "국내·해외 여행지 추천과 동행 매칭",
+  description:
+    "Free Traveler에서 국내외 추천 여행지, 안전정보, 여행 준비 도구와 동행 구하기를 한 곳에서 확인하세요.",
+  path: "/",
+});
+
+const structuredData = buildWebPageStructuredData({
+  name: "Free Traveler",
+  description:
+    "국내외 추천 여행지, 안전정보, 여행 준비 도구, 동행 매칭을 제공하는 여행 플랫폼.",
+  path: "/",
+});
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert h-5 w-[100px]"
