@@ -141,9 +141,9 @@
         "CMP-SCR003-HOTEL-FORM",
         "PAGE-SCR003"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": true,
-      "checkpoint_result": "WAITING_FOR_PREVIEW"
+      "checkpoint_result": "CLEARED"
     },
     {
       "wave_id": "W12",
