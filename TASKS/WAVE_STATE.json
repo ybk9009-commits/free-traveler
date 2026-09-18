@@ -118,9 +118,9 @@
         "CMP-SCR002-TIMELINE",
         "PAGE-SCR002"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": true,
-      "checkpoint_result": "WAITING_FOR_PREVIEW"
+      "checkpoint_result": "CLEARED"
     },
     {
       "wave_id": "W10",
