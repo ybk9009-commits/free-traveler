@@ -78,7 +78,7 @@
         "API-MATE-APPLICATIONS",
         "API-MATE-POSTS"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
