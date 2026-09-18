@@ -129,7 +129,7 @@
         "CMP-SCR003-INTRO-TABS",
         "CMP-SCR003-MATE-WRITE-FORM"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
