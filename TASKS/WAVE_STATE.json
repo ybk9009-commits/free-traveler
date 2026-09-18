@@ -92,7 +92,7 @@
         "CMP-SCR001-RECENT-MATES",
         "CMP-SCR001-SAFETY-SECTION"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
