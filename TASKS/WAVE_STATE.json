@@ -177,7 +177,7 @@
         "CMP-SCR004-BLOCK",
         "PAGE-SCR004"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "checkpoint_required": true,
       "checkpoint_result": null
     },
