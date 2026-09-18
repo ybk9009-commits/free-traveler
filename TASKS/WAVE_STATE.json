@@ -165,7 +165,7 @@
         "CMP-SCR004-DETAIL",
         "CMP-SCR004-REPORT"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
