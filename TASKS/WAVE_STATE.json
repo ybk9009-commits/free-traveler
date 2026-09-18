@@ -103,7 +103,7 @@
         "CMP-SCR001-DESTINATION-DETAIL-DRAWER",
         "PAGE-SCR001"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "checkpoint_required": true,
       "checkpoint_result": null
     },
