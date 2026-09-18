@@ -36,7 +36,10 @@ export function DestinationCard({
       : "";
 
   return (
-    <article className="group overflow-hidden rounded-[16px] border border-[#E3E2DE] bg-white transition-shadow hover:shadow-[0_1px_2px_rgba(0,0,0,.04),0_4px_12px_rgba(0,0,0,.08)]">
+    <article
+      data-testid="destination-card"
+      className="group overflow-hidden rounded-[16px] border border-[#E3E2DE] bg-white transition-shadow hover:shadow-[0_1px_2px_rgba(0,0,0,.04),0_4px_12px_rgba(0,0,0,.08)]"
+    >
       <div className="relative aspect-[4/3] overflow-hidden bg-[#F7F6F4]">
         {/* eslint-disable-next-line @next/next/no-img-element -- next.config.ts에 원격 이미지 도메인이 설정되어 있지 않아(이 Task 범위 밖) next/image 대신 img를 사용한다. */}
         <img

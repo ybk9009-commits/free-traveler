@@ -348,7 +348,10 @@ export function DestinationGrid() {
         })}
       </div>
 
-      <div className="mt-10 flex flex-col gap-3">
+      <div
+        data-testid="domestic-destinations"
+        className="mt-10 flex flex-col gap-3"
+      >
         <h3 className="text-[20px] font-semibold text-[#2A2A2E]">
           국내 인기 여행지
         </h3>
@@ -373,7 +376,10 @@ export function DestinationGrid() {
         )}
       </div>
 
-      <div className="mt-10 flex flex-col gap-3">
+      <div
+        data-testid="overseas-destinations"
+        className="mt-10 flex flex-col gap-3"
+      >
         <h3 className="text-[20px] font-semibold text-[#2A2A2E]">
           해외 인기 여행지
         </h3>
