@@ -2,9 +2,13 @@ import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 const DECIDABLE_STATUSES = ["ACCEPTED", "REJECTED"] as const;
-type DecidableStatus = (typeof DECIDABLE_STATUSES)[number];
+export type DecidableStatus = (typeof DECIDABLE_STATUSES)[number];
 
-function isDecidableStatus(value: unknown): value is DecidableStatus {
+/**
+ * TEST-UNIT-MATE-STATE(tests/unit/mate-state.test.ts)가 직접 import해
+ * 검증할 수 있도록 export한다.
+ */
+export function isDecidableStatus(value: unknown): value is DecidableStatus {
   return (
     typeof value === "string" &&
     (DECIDABLE_STATUSES as readonly string[]).includes(value)

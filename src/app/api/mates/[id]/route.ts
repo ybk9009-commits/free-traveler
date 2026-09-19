@@ -11,8 +11,15 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-/** REQ-FUNC-037(축소) — 종료일이 지난 OPEN 글은 배치 없이 조회 시점에 CLOSED로 계산한다. */
-function computeEffectiveStatus(status: string, endDate: string): string {
+/**
+ * REQ-FUNC-037(축소) — 종료일이 지난 OPEN 글은 배치 없이 조회 시점에 CLOSED로
+ * 계산한다. TEST-UNIT-MATE-STATE(tests/unit/mate-state.test.ts)가 직접
+ * import해 검증할 수 있도록 export한다.
+ */
+export function computeEffectiveStatus(
+  status: string,
+  endDate: string,
+): string {
   if (status === "OPEN" && endDate < todayIsoDate()) return "CLOSED";
   return status;
 }
