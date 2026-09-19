@@ -205,7 +205,7 @@
         "TEST-A11Y-AXE",
         "TEST-DATA-VALIDATION"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null
     },
