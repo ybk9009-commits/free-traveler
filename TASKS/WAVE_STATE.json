@@ -191,7 +191,7 @@
         "CMP-SCR005-PROFILE",
         "PAGE-SCR005"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "checkpoint_required": true,
       "checkpoint_result": null
     },
