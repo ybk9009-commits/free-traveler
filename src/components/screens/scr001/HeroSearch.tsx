@@ -124,7 +124,7 @@ export function HeroSearch() {
             aria-expanded={isOpen && results.length > 0}
             aria-controls="hero-search-results"
             autoComplete="off"
-            className="h-full w-full bg-transparent text-[16px] text-[#2A2A2E] outline-none placeholder:text-[#83838A]"
+            className="h-full w-full bg-transparent text-[16px] text-[#2A2A2E] outline-none placeholder:text-[#6B6B72]"
           />
         </div>
 
@@ -148,7 +148,7 @@ export function HeroSearch() {
                     <span className="text-[15px] font-medium text-[#2A2A2E]">
                       {highlightMatch(result.title, query)}
                     </span>
-                    <span className="text-[13px] text-[#83838A]">
+                    <span className="text-[13px] text-[#6B6B72]">
                       {result.subtitle}
                     </span>
                   </span>

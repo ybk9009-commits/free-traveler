@@ -45,13 +45,13 @@ export function AboutSummary() {
               <p className="text-[20px] font-semibold text-[#2A2A2E]">
                 {tripCountLabel}
               </p>
-              <p className="text-[13px] text-[#83838A]">여행 경험</p>
+              <p className="text-[13px] text-[#6B6B72]">여행 경험</p>
             </div>
             <div className="flex-1 rounded-[8px] border border-[#E3E2DE] bg-[#F7F6F4] px-5 py-4">
               <p className="text-[20px] font-semibold text-[#2A2A2E]">
                 {countryCountLabel}
               </p>
-              <p className="text-[13px] text-[#83838A]">방문 국가</p>
+              <p className="text-[13px] text-[#6B6B72]">방문 국가</p>
             </div>
           </div>
 

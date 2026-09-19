@@ -122,7 +122,7 @@ export function AuthCard() {
               className={`h-11 border-b-2 px-1 text-[15px] font-semibold outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
                 subTab === tab.id
                   ? "border-[#F4623A] text-[#2A2A2E]"
-                  : "border-transparent text-[#83838A]"
+                  : "border-transparent text-[#6B6B72]"
               }`}
             >
               {tab.label}
@@ -196,7 +196,7 @@ export function AuthCard() {
             ))}
           </ul>
         </div>
-        <p className="text-[13px] leading-[1.6] text-[#83838A]">
+        <p className="text-[13px] leading-[1.6] text-[#6B6B72]">
           비밀번호는 암호화되어 저장됩니다. Free Traveler는 회원의 신원을 별도로
           보증하지 않으니, 동행 만남 시 안전 수칙을 꼭 지켜 주세요.
         </p>

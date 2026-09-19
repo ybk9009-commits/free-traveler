@@ -115,7 +115,7 @@ export function MateDetailPanel() {
   function renderContent() {
     if (!postId) {
       return (
-        <p className="text-[14px] leading-[1.6] text-[#83838A]">
+        <p className="text-[14px] leading-[1.6] text-[#6B6B72]">
           목록에서 동행 글을 선택하면 상세 내용이 여기에 표시됩니다.
         </p>
       );
@@ -123,7 +123,7 @@ export function MateDetailPanel() {
 
     if (loading || !detail || detail.post_id !== postId) {
       return (
-        <p className="text-[14px] leading-[1.6] text-[#83838A]">
+        <p className="text-[14px] leading-[1.6] text-[#6B6B72]">
           불러오는 중입니다.
         </p>
       );
@@ -152,7 +152,7 @@ export function MateDetailPanel() {
             className={`shrink-0 rounded-full px-3 py-1 text-[13px] font-medium leading-[1.4] ${
               open
                 ? "bg-[#FEEBE3] text-[#F4623A]"
-                : "bg-[#EFEDE9] text-[#83838A]"
+                : "bg-[#EFEDE9] text-[#6B6B72]"
             }`}
           >
             {open ? "모집중" : "마감"}

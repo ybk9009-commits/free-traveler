@@ -313,7 +313,7 @@ export function DestinationDetailDrawer() {
               </button>
             )}
 
-            <section className="border-t border-[#E3E2DE] pt-4 text-[13px] text-[#83838A]">
+            <section className="border-t border-[#E3E2DE] pt-4 text-[13px] text-[#6B6B72]">
               <p className="font-semibold text-[#2A2A2E]">출처</p>
               <ul className="mt-1 flex flex-col gap-1">
                 {destination.sources.map((source) => (

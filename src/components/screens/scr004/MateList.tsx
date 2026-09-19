@@ -196,7 +196,7 @@ export function MateList() {
                   className={`shrink-0 rounded-full px-3 py-1 text-[13px] font-medium leading-[1.4] ${
                     open
                       ? "bg-[#FEEBE3] text-[#F4623A]"
-                      : "bg-[#EFEDE9] text-[#83838A]"
+                      : "bg-[#EFEDE9] text-[#6B6B72]"
                   }`}
                 >
                   {open ? "모집중" : "마감"}

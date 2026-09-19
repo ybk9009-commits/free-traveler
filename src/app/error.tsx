@@ -24,7 +24,7 @@ export default function ErrorBoundary({ error, reset }: ErrorBoundaryProps) {
         페이지를 표시하는 중 오류가 발생했습니다. 다시 시도해 주세요.
       </p>
       {error.digest && (
-        <p className="text-[13px] leading-[1.4] text-[#83838A]">
+        <p className="text-[13px] leading-[1.4] text-[#6B6B72]">
           문제 코드: {error.digest}
         </p>
       )}

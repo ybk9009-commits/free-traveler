@@ -105,7 +105,7 @@ export function IntroTabs({
               className={`h-11 border-b-2 px-1 text-[15px] font-semibold outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
                 selected
                   ? "border-[#F4623A] text-[#2A2A2E]"
-                  : "border-transparent text-[#83838A]"
+                  : "border-transparent text-[#6B6B72]"
               }`}
             >
               {tab.label}

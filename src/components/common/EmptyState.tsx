@@ -37,7 +37,7 @@ export function EmptyState({
       <p className="text-[18px] font-semibold leading-[1.4] text-[#2A2A2E]">
         {title}
       </p>
-      <p className="max-w-[420px] text-[14px] leading-[1.6] text-[#83838A]">
+      <p className="max-w-[420px] text-[14px] leading-[1.6] text-[#6B6B72]">
         {description}
       </p>
       {action.href ? (

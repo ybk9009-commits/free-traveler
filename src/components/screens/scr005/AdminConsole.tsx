@@ -152,7 +152,7 @@ export function AdminConsole() {
           신고 큐
         </h3>
         {reports.length === 0 ? (
-          <p className="mt-3 text-[14px] text-[#83838A]">
+          <p className="mt-3 text-[14px] text-[#6B6B72]">
             접수된 신고가 없습니다.
           </p>
         ) : (
@@ -170,7 +170,7 @@ export function AdminConsole() {
                     {report.status}
                   </span>
                 </div>
-                <p className="text-[13px] text-[#83838A]">
+                <p className="text-[13px] text-[#6B6B72]">
                   대상 ID {report.target_id} · 접수{" "}
                   {report.created_at.slice(0, 10)}
                 </p>

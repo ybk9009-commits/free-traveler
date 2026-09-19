@@ -55,7 +55,7 @@ export function FormField({
       })}
 
       {helpText && (
-        <p id={helpId} className="text-[14px] leading-[1.6] text-[#83838A]">
+        <p id={helpId} className="text-[14px] leading-[1.6] text-[#6B6B72]">
           {helpText}
         </p>
       )}

@@ -118,7 +118,7 @@ export function Tabs({
               className={`flex min-h-[44px] items-center px-1 text-[15px] font-semibold leading-[1.4] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
                 selected
                   ? "border-b-2 border-[#F4623A] text-[#2A2A2E]"
-                  : "border-b-2 border-transparent text-[#83838A]"
+                  : "border-b-2 border-transparent text-[#6B6B72]"
               }`}
             >
               {item.label}

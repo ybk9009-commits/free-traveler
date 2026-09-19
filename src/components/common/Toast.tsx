@@ -37,7 +37,7 @@ export function Toast() {
             type="button"
             onClick={() => dismiss(toast.id)}
             aria-label="알림 닫기"
-            className="flex h-6 w-6 items-center justify-center text-[#83838A] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8]"
+            className="flex h-6 w-6 items-center justify-center text-[#6B6B72] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8]"
           >
             <span aria-hidden="true">&times;</span>
           </button>

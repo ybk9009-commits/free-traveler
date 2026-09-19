@@ -29,7 +29,7 @@ export function Timeline() {
               aria-hidden="true"
               className="absolute -left-[29px] top-1 h-3 w-3 rounded-full bg-[#F4623A]"
             />
-            <p className="text-[13px] font-semibold text-[#83838A]">
+            <p className="text-[13px] font-semibold text-[#6B6B72]">
               {entry.year}
             </p>
             <p className="mt-1 text-[16px] font-semibold text-[#2A2A2E]">

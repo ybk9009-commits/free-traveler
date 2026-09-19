@@ -233,7 +233,7 @@ export function MyActivityTab() {
             className={`h-11 border-b-2 px-1 text-[15px] font-semibold outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
               subTab === tab.id
                 ? "border-[#F4623A] text-[#2A2A2E]"
-                : "border-transparent text-[#83838A]"
+                : "border-transparent text-[#6B6B72]"
             }`}
           >
             {tab.label}
@@ -268,13 +268,13 @@ export function MyActivityTab() {
                       className={`rounded-full px-3 py-1 text-[12px] font-medium ${
                         open
                           ? "bg-[#FEEBE3] text-[#F4623A]"
-                          : "bg-[#EFEDE9] text-[#83838A]"
+                          : "bg-[#EFEDE9] text-[#6B6B72]"
                       }`}
                     >
                       {open ? "모집중" : "마감"}
                     </span>
                   </div>
-                  <p className="text-[13px] text-[#83838A]">
+                  <p className="text-[13px] text-[#6B6B72]">
                     {countryNameFor(post.country_code)} · {post.start_date} -{" "}
                     {post.end_date}
                   </p>

@@ -88,14 +88,14 @@ export function Footer() {
               외교부 해외안전여행
             </a>
           )}
-          <p className="text-[13px] leading-[1.4] text-[#83838A]">
+          <p className="text-[13px] leading-[1.4] text-[#6B6B72]">
             정보는 참고용이며 출국 전 공식 출처 재확인이 필요합니다.
           </p>
         </div>
       </div>
 
       <div className="border-t border-[#E3E2DE]">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center justify-between gap-2 px-4 py-6 text-[13px] text-[#83838A] tablet:flex-row tablet:px-8">
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center justify-between gap-2 px-4 py-6 text-[13px] text-[#6B6B72] tablet:flex-row tablet:px-8">
           <p>© Free Traveler</p>
           <a href={CONTACT_MAILTO} className="hover:text-[#2A2A2E]">
             문의하기

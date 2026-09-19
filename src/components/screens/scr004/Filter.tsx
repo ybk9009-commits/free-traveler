@@ -152,7 +152,7 @@ export function Filter() {
       <div className="flex flex-col gap-6 tablet:flex-row tablet:items-start tablet:justify-between">
         <div className="flex flex-col gap-4 rounded-[16px] border border-[#E3E2DE] bg-[#F7F6F4] p-4 tablet:flex-row tablet:flex-wrap tablet:items-end tablet:gap-4">
           <label className="flex flex-col gap-1">
-            <span className="text-[13px] font-medium text-[#83838A]">국가</span>
+            <span className="text-[13px] font-medium text-[#6B6B72]">국가</span>
             <select
               value={country}
               onChange={(event) =>
@@ -170,7 +170,7 @@ export function Filter() {
           </label>
 
           <label className="flex flex-col gap-1">
-            <span className="text-[13px] font-medium text-[#83838A]">지역</span>
+            <span className="text-[13px] font-medium text-[#6B6B72]">지역</span>
             <select
               value={region}
               onChange={(event) => applyParams({ region: event.target.value })}
@@ -186,7 +186,7 @@ export function Filter() {
           </label>
 
           <label className="flex flex-col gap-1">
-            <span className="text-[13px] font-medium text-[#83838A]">
+            <span className="text-[13px] font-medium text-[#6B6B72]">
               여행 시작
             </span>
             <input
@@ -200,7 +200,7 @@ export function Filter() {
           </label>
 
           <label className="flex flex-col gap-1">
-            <span className="text-[13px] font-medium text-[#83838A]">
+            <span className="text-[13px] font-medium text-[#6B6B72]">
               여행 종료
             </span>
             <input
@@ -214,7 +214,7 @@ export function Filter() {
           </label>
 
           <label className="flex flex-col gap-1">
-            <span className="text-[13px] font-medium text-[#83838A]">
+            <span className="text-[13px] font-medium text-[#6B6B72]">
               모집상태
             </span>
             <select

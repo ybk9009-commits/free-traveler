@@ -123,7 +123,7 @@ export function SafetyDetailDrawer({ info, onClose }: SafetyDetailDrawerProps) {
             >
               {info.countryName} 안전정보
             </h2>
-            <p className="mt-1 text-[13px] text-[#83838A]">
+            <p className="mt-1 text-[13px] text-[#6B6B72]">
               적용 범위:{" "}
               {info.scopeType === "COUNTRY" ? "국가 전체" : "일부 지역"} (
               {info.scopeText})
@@ -183,7 +183,7 @@ export function SafetyDetailDrawer({ info, onClose }: SafetyDetailDrawerProps) {
             </p>
           </div>
 
-          <div className="mt-6 flex flex-col gap-1 border-t border-[#E3E2DE] pt-4 text-[13px] text-[#83838A]">
+          <div className="mt-6 flex flex-col gap-1 border-t border-[#E3E2DE] pt-4 text-[13px] text-[#6B6B72]">
             <p>
               출처: {info.sourceName} · 최종 확인일 {info.verifiedAt} · 편집:{" "}
               {info.verifiedBy}

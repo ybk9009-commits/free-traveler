@@ -99,7 +99,7 @@ export function DestinationCard({
         <p className="text-[14px] leading-[1.6] text-[#54545A]">
           {destination.countryName}
         </p>
-        <span className="mt-1 inline-flex w-fit items-center rounded-full bg-[#F7F6F4] px-3 py-1 text-[13px] font-medium leading-[1.4] text-[#83838A]">
+        <span className="mt-1 inline-flex w-fit items-center rounded-full bg-[#F7F6F4] px-3 py-1 text-[13px] font-medium leading-[1.4] text-[#6B6B72]">
           {seasonLabel}
         </span>
       </div>

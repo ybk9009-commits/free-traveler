@@ -42,7 +42,7 @@ export function SafetySection() {
       >
         국가별 안전정보
       </h2>
-      <p className="mt-2 text-[14px] leading-[1.6] text-[#83838A]">
+      <p className="mt-2 text-[14px] leading-[1.6] text-[#6B6B72]">
         이 정보는 공식 판단을 대체하지 않습니다. 출국 전 공식 출처 재확인이
         필요합니다.
       </p>
@@ -74,13 +74,13 @@ export function SafetySection() {
                     {advisory.label}
                   </span>
                 ) : (
-                  <span className="shrink-0 rounded-full bg-[#F7F6F4] px-3 py-1 text-[13px] font-medium leading-[1.4] text-[#83838A]">
+                  <span className="shrink-0 rounded-full bg-[#F7F6F4] px-3 py-1 text-[13px] font-medium leading-[1.4] text-[#6B6B72]">
                     특별경보 없음
                   </span>
                 )}
               </div>
 
-              <p className="text-[13px] text-[#83838A]">
+              <p className="text-[13px] text-[#6B6B72]">
                 최종 확인일 {info.verifiedAt}
                 {stale && (
                   <span className="ml-2 rounded-full bg-[#FBEEDA] px-2 py-0.5 text-[#B4700A]">

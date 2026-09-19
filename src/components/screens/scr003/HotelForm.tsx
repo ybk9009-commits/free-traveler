@@ -111,7 +111,7 @@ export function HotelForm({ outboundUrl }: HotelFormProps) {
             </div>
           </dl>
 
-          <p className="text-[13px] text-[#83838A]">{NO_TRANSMIT_NOTICE}</p>
+          <p className="text-[13px] text-[#6B6B72]">{NO_TRANSMIT_NOTICE}</p>
 
           {outboundLinkAttrs ? (
             <a
@@ -234,7 +234,7 @@ export function HotelForm({ outboundUrl }: HotelFormProps) {
           </FormField>
         </div>
 
-        <p className="text-[13px] text-[#83838A]">{NO_TRANSMIT_NOTICE}</p>
+        <p className="text-[13px] text-[#6B6B72]">{NO_TRANSMIT_NOTICE}</p>
 
         <button
           type="submit"

@@ -356,7 +356,7 @@ export function ProfileTab() {
           즐겨찾기 여행지
         </h2>
         {favoriteDestinations.length === 0 ? (
-          <p className="mt-2 text-[14px] text-[#83838A]">
+          <p className="mt-2 text-[14px] text-[#6B6B72]">
             즐겨찾기한 여행지가 없어요.
           </p>
         ) : (

@@ -265,7 +265,7 @@ export function DestinationGrid() {
 
       <div className="flex flex-col gap-4 rounded-[16px] border border-[#E3E2DE] bg-[#F7F6F4] p-4 tablet:flex-row tablet:items-end tablet:gap-6">
         <label className="flex flex-1 flex-col gap-1">
-          <span className="text-[13px] font-medium text-[#83838A]">국가</span>
+          <span className="text-[13px] font-medium text-[#6B6B72]">국가</span>
           <select
             value={country}
             onChange={(event) => handleCountryChange(event.target.value)}
@@ -281,7 +281,7 @@ export function DestinationGrid() {
         </label>
 
         <label className="flex flex-1 flex-col gap-1">
-          <span className="text-[13px] font-medium text-[#83838A]">도시</span>
+          <span className="text-[13px] font-medium text-[#6B6B72]">도시</span>
           <select
             value={city}
             onChange={(event) => applyParams({ city: event.target.value })}
@@ -297,7 +297,7 @@ export function DestinationGrid() {
         </label>
 
         <label className="flex flex-1 flex-col gap-1">
-          <span className="text-[13px] font-medium text-[#83838A]">계절</span>
+          <span className="text-[13px] font-medium text-[#6B6B72]">계절</span>
           <select
             value={season}
             onChange={(event) => applyParams({ season: event.target.value })}

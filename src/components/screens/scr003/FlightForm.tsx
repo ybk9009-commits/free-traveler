@@ -112,7 +112,7 @@ export function FlightForm({ outboundUrl }: FlightFormProps) {
             </div>
           </dl>
 
-          <p className="text-[13px] text-[#83838A]">{NO_TRANSMIT_NOTICE}</p>
+          <p className="text-[13px] text-[#6B6B72]">{NO_TRANSMIT_NOTICE}</p>
 
           {outboundLinkAttrs ? (
             <a
@@ -152,7 +152,7 @@ export function FlightForm({ outboundUrl }: FlightFormProps) {
               <li key={tip}>{tip}</li>
             ))}
           </ul>
-          <p className="text-[13px] text-[#83838A]">{SAFETY_DISCLAIMER}</p>
+          <p className="text-[13px] text-[#6B6B72]">{SAFETY_DISCLAIMER}</p>
         </aside>
       </div>
     );
@@ -236,7 +236,7 @@ export function FlightForm({ outboundUrl }: FlightFormProps) {
           </FormField>
         </div>
 
-        <p className="text-[13px] text-[#83838A]">{NO_TRANSMIT_NOTICE}</p>
+        <p className="text-[13px] text-[#6B6B72]">{NO_TRANSMIT_NOTICE}</p>
 
         <button
           type="submit"
@@ -253,7 +253,7 @@ export function FlightForm({ outboundUrl }: FlightFormProps) {
             <li key={tip}>{tip}</li>
           ))}
         </ul>
-        <p className="text-[13px] text-[#83838A]">{SAFETY_DISCLAIMER}</p>
+        <p className="text-[13px] text-[#6B6B72]">{SAFETY_DISCLAIMER}</p>
       </aside>
     </form>
   );

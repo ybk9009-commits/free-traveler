@@ -88,7 +88,7 @@ export default async function AccountPage({
               className={`h-11 border-b-2 px-1 text-[15px] font-semibold leading-[44px] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
                 activeSection === "profile"
                   ? "border-[#F4623A] text-[#2A2A2E]"
-                  : "border-transparent text-[#83838A]"
+                  : "border-transparent text-[#6B6B72]"
               }`}
             >
               프로필
@@ -100,7 +100,7 @@ export default async function AccountPage({
               className={`h-11 border-b-2 px-1 text-[15px] font-semibold leading-[44px] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
                 activeSection === "activity"
                   ? "border-[#F4623A] text-[#2A2A2E]"
-                  : "border-transparent text-[#83838A]"
+                  : "border-transparent text-[#6B6B72]"
               }`}
             >
               내 활동
@@ -113,7 +113,7 @@ export default async function AccountPage({
                 className={`h-11 border-b-2 px-1 text-[15px] font-semibold leading-[44px] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
                   activeSection === "admin"
                     ? "border-[#F4623A] text-[#2A2A2E]"
-                    : "border-transparent text-[#83838A]"
+                    : "border-transparent text-[#6B6B72]"
                 }`}
               >
                 관리

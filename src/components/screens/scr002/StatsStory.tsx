@@ -40,7 +40,7 @@ export function StatsStory() {
             <p className="text-[24px] font-semibold text-[#2A2A2E]">
               {stat.value}
             </p>
-            <p className="mt-1 text-[13px] text-[#83838A]">{stat.label}</p>
+            <p className="mt-1 text-[13px] text-[#6B6B72]">{stat.label}</p>
           </div>
         ))}
       </div>
