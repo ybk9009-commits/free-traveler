@@ -177,9 +177,9 @@
         "CMP-SCR004-BLOCK",
         "PAGE-SCR004"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": true,
-      "checkpoint_result": "WAITING_FOR_PREVIEW"
+      "checkpoint_result": "CLEARED"
     },
     {
       "wave_id": "W15",
