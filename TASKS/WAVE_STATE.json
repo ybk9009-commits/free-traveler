@@ -193,7 +193,7 @@
       ],
       "status": "in_progress",
       "checkpoint_required": true,
-      "checkpoint_result": null
+      "checkpoint_result": "WAITING_FOR_PREVIEW"
     },
     {
       "wave_id": "W16",
