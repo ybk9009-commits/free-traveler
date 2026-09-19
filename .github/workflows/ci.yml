@@ -8,8 +8,14 @@ on:
   workflow_dispatch:
 
 jobs:
+  # CI-LINT-TYPECHECK-DATA(REQ-NF-031) — main 병합 전 필수 게이트.
+  # Playwright/axe(아래 public-smoke Job)는 별도 Job으로 분리해 이 Job의
+  # 필수 게이트 여부와 독립적으로 팀이 branch protection에서 결정하게 한다.
   quality:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +32,14 @@ jobs:
 
       - run: npm run typecheck
 
-      - run: npm run test:unit
+      # tests/unit만 명시적으로 지정한다(TEST-UNIT-TRAVEL-DATES/
+      # CONTACT-DETECTION/MATE-STATE, "Unit Test 3종") — tests/integration
+      # (TEST-RLS-BASIC)은 실제 Supabase 프로젝트 상태에 의존하는 별도
+      # 검증이라 이 필수 병합 게이트에 묶지 않는다.
+      - run: npx vitest run tests/unit
+
+      # TEST-DATA-VALIDATION 게이트(REQ-FUNC-074) — src/data 완전성·수량 검증.
+      - run: npx tsx scripts/validate_content.ts
 
       - run: npm run task:contract
 
@@ -37,6 +50,17 @@ jobs:
   public-smoke:
     needs: quality
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      E2E_TEST_USER_EMAIL: ${{ secrets.E2E_TEST_USER_EMAIL }}
+      E2E_TEST_USER_PASSWORD: ${{ secrets.E2E_TEST_USER_PASSWORD }}
+      E2E_TEST_OWNER_EMAIL: ${{ secrets.E2E_TEST_OWNER_EMAIL }}
+      E2E_TEST_OWNER_PASSWORD: ${{ secrets.E2E_TEST_OWNER_PASSWORD }}
+      E2E_TEST_APPLICANT_EMAIL: ${{ secrets.E2E_TEST_APPLICANT_EMAIL }}
+      E2E_TEST_APPLICANT_PASSWORD: ${{ secrets.E2E_TEST_APPLICANT_PASSWORD }}
+      E2E_TEST_ADMIN_EMAIL: ${{ secrets.E2E_TEST_ADMIN_EMAIL }}
+      E2E_TEST_ADMIN_PASSWORD: ${{ secrets.E2E_TEST_ADMIN_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
 
@@ -49,7 +73,11 @@ jobs:
 
       - run: npx playwright install --with-deps chromium
 
-      - run: npm run test:e2e:public
+      # public-smoke/travel-tools는 자격 증명이 없어도 항상 실행된다.
+      # mate-auth/auth-smoke는 E2E_TEST_OWNER_*/APPLICANT_*/ADMIN_*·
+      # E2E_TEST_USER_* secret이 설정되지 않은 저장소에서는 해당 시나리오만
+      # 깨끗하게 skip된다(각 spec 자체의 test.skip 가드).
+      - run: npm run test:e2e
 
       - if: failure()
         uses: actions/upload-artifact@v4
