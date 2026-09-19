@@ -111,13 +111,14 @@ export function AuthCard() {
   return (
     <div className="grid grid-cols-1 gap-8 tablet:grid-cols-2">
       <div className="flex flex-col gap-4">
-        <div className="flex gap-6 border-b border-[#E3E2DE]">
+        <div role="tablist" className="flex gap-6 border-b border-[#E3E2DE]">
           {SUB_TABS.map((tab) => (
             <button
               key={tab.id}
               type="button"
+              role="tab"
+              aria-selected={subTab === tab.id}
               onClick={() => switchTab(tab.id)}
-              aria-current={subTab === tab.id ? "true" : undefined}
               className={`h-11 border-b-2 px-1 text-[15px] font-semibold outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] ${
                 subTab === tab.id
                   ? "border-[#F4623A] text-[#2A2A2E]"

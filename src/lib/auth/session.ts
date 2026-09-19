@@ -1,3 +1,5 @@
+"use server";
+
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -18,7 +20,6 @@ export async function signUpWithEmail(
   email: string,
   password: string,
 ): Promise<AuthActionResult> {
-  "use server";
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.auth.signUp({
     email,
@@ -34,7 +35,6 @@ export async function signInWithEmail(
   email: string,
   password: string,
 ): Promise<AuthActionResult> {
-  "use server";
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) return { ok: false, error: error.message };
@@ -43,7 +43,6 @@ export async function signInWithEmail(
 
 /** REQ-FUNC-066 — 로그아웃 후 홈으로 리다이렉트한다. */
 export async function signOut(): Promise<void> {
-  "use server";
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
   redirect("/");
@@ -53,7 +52,6 @@ export async function signOut(): Promise<void> {
 export async function requestPasswordReset(
   email: string,
 ): Promise<AuthActionResult> {
-  "use server";
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: buildCallbackUrl("/account?flow=reset-password"),
