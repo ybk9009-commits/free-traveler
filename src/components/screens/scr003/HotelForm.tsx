@@ -31,6 +31,22 @@ function todayIsoDate(): string {
 }
 
 /**
+ * REQ-FUNC-021 — 체크인이 오늘보다 이전이거나 체크아웃이 체크인 이하이면
+ * 차단한다. TEST-UNIT-TRAVEL-DATES(tests/unit/travel-dates.test.ts)가 직접
+ * import해 경계값을 검증할 수 있도록 export하고, `today`를 인자로 받아
+ * `Date.now()`에 의존하지 않게 한다(동작 변경 없음).
+ */
+export function validateHotelDates(
+  checkIn: string,
+  checkOut: string,
+  today: string,
+): string | null {
+  if (checkIn < today) return "체크인은 오늘 이후여야 합니다.";
+  if (checkOut <= checkIn) return "체크아웃은 체크인보다 늦어야 합니다.";
+  return null;
+}
+
+/**
  * CMP-SCR-003-hotel-form — 숙소 조건 입력·요약·외부 이동(SCR-003 §3~5, 숙소
  * 탭). `CMP-SCR-003-flight-form`과 동일한 좌우 분할/입력 패턴을 재사용한다.
  * 국가·지역·날짜는 브라우저 메모리 상태로만 처리한다(REQ-FUNC-025, REQ-NF-017,
@@ -71,12 +87,9 @@ export function HotelForm({ outboundUrl }: HotelFormProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (checkIn < todayIsoDate()) {
-      setDateError("체크인은 오늘 이후여야 합니다.");
-      return;
-    }
-    if (checkOut <= checkIn) {
-      setDateError("체크아웃은 체크인보다 늦어야 합니다.");
+    const error = validateHotelDates(checkIn, checkOut, todayIsoDate());
+    if (error) {
+      setDateError(error);
       return;
     }
     setDateError(null);

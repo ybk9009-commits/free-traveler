@@ -33,6 +33,22 @@ function todayIsoDate(): string {
 }
 
 /**
+ * REQ-FUNC-013 — 출발일이 오늘보다 이전이거나 귀국일이 출발일보다 이전이면
+ * 차단한다. TEST-UNIT-TRAVEL-DATES(tests/unit/travel-dates.test.ts)가 직접
+ * import해 경계값을 검증할 수 있도록 export하고, `today`를 인자로 받아
+ * `Date.now()`에 의존하지 않게 한다(동작 변경 없음).
+ */
+export function validateFlightDates(
+  startDate: string,
+  endDate: string,
+  today: string,
+): string | null {
+  if (startDate < today) return "출발일은 오늘 이후여야 합니다.";
+  if (endDate < startDate) return "귀국일은 출발일 이후여야 합니다.";
+  return null;
+}
+
+/**
  * CMP-SCR-003-flight-form — 항공 조건 입력·요약·외부 이동(SCR-003 §3~5, 항공
  * 탭). 국가·지역·날짜는 브라우저 메모리 상태로만 처리하며, 서버 API·DB·URL
  * query·분석 이벤트 어디로도 전달하지 않는다(REQ-FUNC-017, REQ-NF-017, CON-01).
@@ -72,12 +88,9 @@ export function FlightForm({ outboundUrl }: FlightFormProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (startDate < todayIsoDate()) {
-      setDateError("출발일은 오늘 이후여야 합니다.");
-      return;
-    }
-    if (endDate < startDate) {
-      setDateError("귀국일은 출발일 이후여야 합니다.");
+    const error = validateFlightDates(startDate, endDate, todayIsoDate());
+    if (error) {
+      setDateError(error);
       return;
     }
     setDateError(null);
