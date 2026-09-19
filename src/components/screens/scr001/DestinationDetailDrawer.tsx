@@ -129,7 +129,7 @@ export function DestinationDetailDrawer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- close()/pathname/searchParams는 destination이 바뀔 때만 재바인딩하면 충분하다.
   }, [destination]);
 
-  if (!destination || typeof document === "undefined") return null;
+  if (!destination) return null;
 
   const activeDestination: Destination = destination;
 
