@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
 import { Modal } from "@/components/common/Modal";
 import {
   FormField,
@@ -16,27 +17,20 @@ const REASON_OPTIONS = [
   { id: "OTHER", label: "기타" },
 ] as const;
 
-export type ReportTargetType = "USER" | "MATE_POST" | "MATE_APPLICATION";
-
-interface ReportModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  targetType: ReportTargetType;
-  targetId: string;
-}
-
 /**
- * CMP-SCR-004-report — 신고 모달(SCR-004). 사유코드 Select + 설명 textarea로
- * `API-REPORTS`(POST `/api/reports`)에 제출하고 접수번호를 표시한다
- * (REQ-FUNC-039). 신고자 정보는 서버 세션에서 자동으로 채워지며 이 모달은
- * 별도로 전달하지 않는다.
+ * CMP-SCR-004-report — 신고 모달(SCR-004). `CMP-SCR-004-detail`/`block`과
+ * 동일한 `?post=<id>` URL 쿼리로 대상 글을 독립적으로 식별한다(선택된 글이
+ * 없으면 트리거 버튼을 렌더링하지 않는다) — 사용자 승인을 받아 controlled
+ * props 방식에서 자기완결형(self-contained) 방식으로 리팩터링했다. 사유코드
+ * Select + 설명 textarea로 `API-REPORTS`(POST `/api/reports`)에 제출하고
+ * 접수번호를 표시한다(REQ-FUNC-039). 신고자 정보는 서버 세션에서 자동으로
+ * 채워지며 이 모달은 별도로 전달하지 않는다.
  */
-export function ReportModal({
-  isOpen,
-  onClose,
-  targetType,
-  targetId,
-}: ReportModalProps) {
+export function ReportModal() {
+  const searchParams = useSearchParams();
+  const postId = searchParams.get("post");
+
+  const [isOpen, setIsOpen] = useState(false);
   const [reasonCode, setReasonCode] = useState("");
   const [description, setDescription] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -51,12 +45,13 @@ export function ReportModal({
   }
 
   function handleClose() {
+    setIsOpen(false);
     reset();
-    onClose();
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!postId) return;
     setSubmitting(true);
     setErrorMessage(null);
 
@@ -64,7 +59,12 @@ export function ReportModal({
       const response = await fetch("/api/reports", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ targetType, targetId, reasonCode, description }),
+        body: JSON.stringify({
+          targetType: "MATE_POST",
+          targetId: postId,
+          reasonCode,
+          description,
+        }),
       });
       const body = await response.json().catch(() => null);
 
@@ -79,73 +79,85 @@ export function ReportModal({
     }
   }
 
+  if (!postId) return null;
+
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title="신고하기">
-      {reportId ? (
-        <div className="flex flex-col gap-3">
-          <p className="text-[15px] font-semibold text-[#1F7A52]">
-            신고가 접수되었습니다.
-          </p>
-          <p className="text-[14px] leading-[1.6] text-[#54545A]">
-            접수번호: {reportId}
-          </p>
-          <button
-            type="button"
-            onClick={handleClose}
-            className="inline-flex h-11 w-fit items-center justify-center rounded-[8px] bg-[#F4623A] px-6 text-[15px] font-semibold text-white hover:bg-[#D94F2B]"
-          >
-            닫기
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <FormField label="신고 사유" required>
-            {(fieldProps) => (
-              <select
-                {...fieldProps}
-                required
-                value={reasonCode}
-                onChange={(event) => setReasonCode(event.target.value)}
-                className={formFieldInputClassName}
-              >
-                <option value="">사유 선택</option>
-                {REASON_OPTIONS.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            )}
-          </FormField>
+    <>
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="inline-flex h-11 w-fit items-center justify-center rounded-[8px] border border-[#C7C6C1] px-5 text-[14px] font-semibold text-[#2A2A2E] outline-none hover:bg-[#F7F6F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8]"
+      >
+        신고하기
+      </button>
 
-          <FormField label="상세 설명" helpText="최대 2000자(선택)">
-            {(fieldProps) => (
-              <textarea
-                {...fieldProps}
-                rows={4}
-                maxLength={2000}
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-                className={`${formFieldInputClassName} h-auto py-3`}
-              />
-            )}
-          </FormField>
-
-          {errorMessage && (
-            <p role="alert" className="text-[14px] text-[#C1392B]">
-              {errorMessage}
+      <Modal isOpen={isOpen} onClose={handleClose} title="신고하기">
+        {reportId ? (
+          <div className="flex flex-col gap-3">
+            <p className="text-[15px] font-semibold text-[#1F7A52]">
+              신고가 접수되었습니다.
             </p>
-          )}
+            <p className="text-[14px] leading-[1.6] text-[#54545A]">
+              접수번호: {reportId}
+            </p>
+            <button
+              type="button"
+              onClick={handleClose}
+              className="inline-flex h-11 w-fit items-center justify-center rounded-[8px] bg-[#F4623A] px-6 text-[15px] font-semibold text-white hover:bg-[#D94F2B]"
+            >
+              닫기
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <FormField label="신고 사유" required>
+              {(fieldProps) => (
+                <select
+                  {...fieldProps}
+                  required
+                  value={reasonCode}
+                  onChange={(event) => setReasonCode(event.target.value)}
+                  className={formFieldInputClassName}
+                >
+                  <option value="">사유 선택</option>
+                  {REASON_OPTIONS.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </FormField>
 
-          <button
-            type="submit"
-            disabled={submitting}
-            className="inline-flex h-11 w-fit items-center justify-center rounded-[8px] bg-[#F4623A] px-6 text-[15px] font-semibold text-white hover:bg-[#D94F2B] disabled:opacity-60"
-          >
-            {submitting ? "접수 중..." : "신고 제출"}
-          </button>
-        </form>
-      )}
-    </Modal>
+            <FormField label="상세 설명" helpText="최대 2000자(선택)">
+              {(fieldProps) => (
+                <textarea
+                  {...fieldProps}
+                  rows={4}
+                  maxLength={2000}
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                  className={`${formFieldInputClassName} h-auto py-3`}
+                />
+              )}
+            </FormField>
+
+            {errorMessage && (
+              <p role="alert" className="text-[14px] text-[#C1392B]">
+                {errorMessage}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="inline-flex h-11 w-fit items-center justify-center rounded-[8px] bg-[#F4623A] px-6 text-[15px] font-semibold text-white hover:bg-[#D94F2B] disabled:opacity-60"
+            >
+              {submitting ? "접수 중..." : "신고 제출"}
+            </button>
+          </form>
+        )}
+      </Modal>
+    </>
   );
 }
