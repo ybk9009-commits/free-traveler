@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 import { loadEnv } from "vite";
 
@@ -8,6 +9,12 @@ export default defineConfig(({ mode }) => {
   Object.assign(process.env, loadEnv(mode, process.cwd(), ""));
 
   return {
+    resolve: {
+      // tsconfig.json의 paths(@/* → ./src/*)를 Vite는 자동으로 읽지 않는다.
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    },
     test: {
       include: [
         "src/**/*.{test,spec}.{ts,tsx}",
