@@ -239,9 +239,9 @@
         "DEPLOY-VERCEL-SUPABASE-CHECK",
         "RELEASE-CHECK-MANUAL"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "checkpoint_required": true,
-      "checkpoint_result": null
+      "checkpoint_result": "WAITING_FOR_PREVIEW"
     }
   ]
 }
