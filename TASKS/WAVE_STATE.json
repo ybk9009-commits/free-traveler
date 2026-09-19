@@ -191,9 +191,9 @@
         "CMP-SCR005-PROFILE",
         "PAGE-SCR005"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": true,
-      "checkpoint_result": "WAITING_FOR_PREVIEW"
+      "checkpoint_result": "CLEARED"
     },
     {
       "wave_id": "W16",
