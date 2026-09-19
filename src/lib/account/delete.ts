@@ -1,3 +1,5 @@
+"use server";
+
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export interface DeleteAccountResult {
@@ -11,7 +13,6 @@ export interface DeleteAccountResult {
  * 개인정보 내보내기(다운로드) 기능은 만들지 않는다(REQ-NF-018 축소 범위 — 삭제만 구현).
  */
 export async function deleteAccount(): Promise<DeleteAccountResult> {
-  "use server";
   const supabase = await createSupabaseServerClient();
   const { data: userData, error: userError } = await supabase.auth.getUser();
 

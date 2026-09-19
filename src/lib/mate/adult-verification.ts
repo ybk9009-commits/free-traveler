@@ -1,3 +1,5 @@
+"use server";
+
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export interface AdultVerificationResult {
@@ -11,7 +13,6 @@ export interface AdultVerificationResult {
  * 저장소에도 남기지 않는다.
  */
 export async function verifyAdult(): Promise<AdultVerificationResult> {
-  "use server";
   const supabase = await createSupabaseServerClient();
   const { data: userData, error: userError } = await supabase.auth.getUser();
 
